@@ -127,7 +127,7 @@ class PrestashopImporter(PrestashopBaseImporter):
                 '%d created from prestashop %s', binding, self.prestashop_id)
         except Exception as e:
             _logger.debug(
-                '%d exception on create prestashop %s - %s', binding, self.prestashop_id, e)
+                'Exception on create prestashop %s - %s', self.prestashop_id, e)
         return binding
 
     def _update(self, binding, data):
