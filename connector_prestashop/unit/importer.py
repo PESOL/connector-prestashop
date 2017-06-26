@@ -126,6 +126,7 @@ class PrestashopImporter(PrestashopBaseImporter):
             _logger.debug(
                 '%d created from prestashop %s', binding, self.prestashop_id)
         except Exception as e:
+            binding = False
             _logger.debug(
                 'Exception on create prestashop %s - %s', self.prestashop_id, e)
         return binding
