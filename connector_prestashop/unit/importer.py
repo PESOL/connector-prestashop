@@ -119,11 +119,15 @@ class PrestashopImporter(PrestashopBaseImporter):
         """ Create the OpenERP record """
         # special check on data before import
         self._validate_data(data)
-        binding = self.model.with_context(
-            **self._create_context()
-        ).create(data)
-        _logger.debug(
-            '%d created from prestashop %s', binding, self.prestashop_id)
+        try:
+            binding = self.model.with_context(
+                **self._create_context()
+            ).create(data)
+            _logger.debug(
+                '%d created from prestashop %s', binding, self.prestashop_id)
+        except Exception as e:
+            _logger.debug(
+                '%d exception on create prestashop %s - %s', binding, self.prestashop_id, e)
         return binding
 
     def _update(self, binding, data):
