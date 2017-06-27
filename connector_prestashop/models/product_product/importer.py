@@ -221,7 +221,13 @@ class ProductCombinationMapper(ImportMapper):
             template = backend_adapter.read(record['id_product'])
             barcode = template.get('barcode') or template.get('ean13')
         if barcode and barcode != '0' and check_ean(barcode):
-            return {'barcode': barcode}
+            model = self.session.env['product.product']
+            product = model.search([('barcode', '=', barcode)])
+            if product:
+                product.write({'barcode': False})
+            else:
+                return {'barcode': barcode}
+
         return {}
 
     def _get_tax_ids(self, record):
