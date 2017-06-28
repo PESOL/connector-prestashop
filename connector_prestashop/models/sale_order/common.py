@@ -166,4 +166,4 @@ class OrderPaymentAdapter(GenericAdapter):
 @prestashop
 class OrderDiscountAdapter(GenericAdapter):
     _model_name = 'prestashop.sale.order.line.discount'
-    _prestashop_model = 'order_discounts'
+    _prestashop_model = 'order_cart_rule'
