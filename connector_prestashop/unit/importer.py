@@ -449,8 +449,9 @@ class TranslatableRecordImporter(PrestashopImporter):
                     # and maybe show a message to users.
                     raise FailedJobError(
                         _('No language could be found for the Prestashop lang '
-                          'with id "%s". Run "Synchronize base data" again.') %
-                        (current_id,)
+                          'with id "%s" on %s. '
+                          'Run "Synchronize base data" again.'
+                          ) % (current_id, languages,)
                     )
                 split_record[code][field] = language['value']
         return split_record
